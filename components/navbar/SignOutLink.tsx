@@ -6,6 +6,7 @@ function SignOutLink() {
   const handleLogout = () => {
     toast("You have been signed out.");
   };
+  
   return (
     <SignOutButton redirectUrl="/">
       <button className="w-full text-left" onClick={handleLogout}>
