@@ -8,7 +8,7 @@ type SubmitButtonProps = {
   text?: string;
 };
 
-const Buttons = ({ className, text }: SubmitButtonProps) => {
+const SubmitButton = ({ className, text }: SubmitButtonProps) => {
   const { pending } = useFormStatus();
   return (
     <Button
@@ -29,4 +29,4 @@ const Buttons = ({ className, text }: SubmitButtonProps) => {
   );
 };
 
-export default Buttons;
+export { SubmitButton };
