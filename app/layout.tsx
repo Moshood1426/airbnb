@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Figtree } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar/Navbar";
+import Providers from "./providers";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -23,23 +25,28 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        "h-full",
-        "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        figtree.variable,
-      )}
-    >
-      <body
-      // className={inter.className}
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={cn(
+          "h-full",
+          "antialiased",
+          geistSans.variable,
+          geistMono.variable,
+          "font-sans",
+          figtree.variable,
+        )}
+        suppressHydrationWarning
       >
-        <Navbar />
-        <main className="container py-10">{children}</main>
-      </body>
-    </html>
+        <body
+        // className={inter.className}
+        >
+          <Providers>
+            <Navbar />
+            <main className="container py-10">{children}</main>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
